@@ -9,6 +9,7 @@ function App() {
   const [lapsDiff, setLapsDiff] = useState([])
   const [isRunning, setIsRunning] = useState(false)  
   const [display, setDisplay] = useState(0)
+  const [lapTime, setLapTime] = useState(0)
 
   const formatTime = useCallback((timeToFormat) => {
     const minutes = Math.floor(timeToFormat / 6000)
@@ -21,10 +22,10 @@ function App() {
 
   return (
     <div className="App">
-      {display === 0 ? <DisplayTime time={time} isRunning={isRunning} setTime={setTime} formatTime={formatTime} /> : <DisplayClock /> }
+      {display === 0 ? <DisplayTime time={time} isRunning={isRunning} setTime={setTime} formatTime={formatTime} setLapTime={setLapTime}/> : <DisplayClock /> }
       <DisplaySwap display={display} setDisplay={setDisplay}/>
-      <InputButtons isRunning={isRunning} setIsRunning={setIsRunning} laps={laps} time={time} setLaps={setLaps} setTime={setTime} lapsDiff={lapsDiff} setLapsDiff={setLapsDiff}/>
-      <DisplayData laps={laps} lapsDiff={lapsDiff} formatTime={formatTime} />
+      <InputButtons isRunning={isRunning} setIsRunning={setIsRunning} laps={laps} time={time} setLaps={setLaps} setTime={setTime} lapsDiff={lapsDiff} setLapsDiff={setLapsDiff} setLapTime={setLapTime}/>
+      <DisplayData laps={laps} lapsDiff={lapsDiff} formatTime={formatTime} time={time} lapTime={lapTime} setLapTime={setLapTime}/>
     </div>
   );
 }

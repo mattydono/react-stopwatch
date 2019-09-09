@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useCallback, useState} from 'react';
+import {DisplayTime, DisplaySwap, InputButtons, DisplayData, DisplayClock} from './components'
 import './App.css';
 
 function App() {
+
+  const [time, setTime] = useState(0)
+  const [laps, setLaps] = useState([])
+  const [lapsDiff, setLapsDiff] = useState([])
+  const [isRunning, setIsRunning] = useState(false)  
+  const [display, setDisplay] = useState(0)
+
+  const formatTime = useCallback((timeToFormat) => {
+    const minutes = Math.floor(timeToFormat / 6000)
+    const seconds = Math.floor((timeToFormat % 6000) / 100)
+    const milliseconds = ((timeToFormat % 60000) % 100)
+    const currentTime = (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds + ':' + (milliseconds < 10 ? '0' : '') + milliseconds
+
+    return currentTime
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {display === 0 ? <DisplayTime time={time} isRunning={isRunning} setTime={setTime} formatTime={formatTime} /> : <DisplayClock /> }
+      <DisplaySwap display={display} setDisplay={setDisplay}/>
+      <InputButtons isRunning={isRunning} setIsRunning={setIsRunning} laps={laps} time={time} setLaps={setLaps} setTime={setTime} lapsDiff={lapsDiff} setLapsDiff={setLapsDiff}/>
+      <DisplayData laps={laps} lapsDiff={lapsDiff} formatTime={formatTime} />
     </div>
   );
 }

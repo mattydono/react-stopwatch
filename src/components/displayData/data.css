@@ -1,0 +1,16 @@
+.lapsContainer {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.green {
+    color: green
+}
+
+.red {
+    color: red
+}
+
+.white {
+    color: white
+}

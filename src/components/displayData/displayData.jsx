@@ -26,10 +26,6 @@ export function DisplayData({lapsDiff, formatTime, lapTime}) {
       }
     }, [lapsDiff, formatTime, lapTime])
 
-    // useEffect(() => {
-    //   setLapTime(time)
-    // }, [lapsDiff, setLapTime, time])
-
     return (
       <div className='lapsContainer'>
         {lapsDiff.map(([key, lap]) => {

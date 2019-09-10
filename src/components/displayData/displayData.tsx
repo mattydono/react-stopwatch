@@ -1,11 +1,12 @@
 import React, {useCallback} from 'react'
 import './data.css'
+import {lapTimes} from '../../App'
 
-export function DisplayData({lapsDiff, formatTime, lapTime}) {
+export const DisplayData: React.FC<{lapsDiff: lapTimes, formatTime: (number: number) => string, lapTime: number}> = ({lapsDiff, formatTime, lapTime}) => {
 
-    const minMaxHighlight = useCallback((value) => {
-      const min = Math.min.apply(Math, Object.values(lapsDiff))
-      const max = Math.max.apply(Math, Object.values(lapsDiff))
+    const minMaxHighlight = useCallback((value: number): string => {
+      const min: number = Math.min.apply(Math, Object.values(lapsDiff))
+      const max: number = Math.max.apply(Math, Object.values(lapsDiff))
 
         if(value === min && Object.values(lapsDiff).length > 1) {
           return 'green'
@@ -18,7 +19,6 @@ export function DisplayData({lapsDiff, formatTime, lapTime}) {
     }, [lapsDiff])
 
     const topRow = useCallback(() => {
-  
       if(Object.values(lapsDiff).length === 0) {
         return <div className='topRow'>Lap 1 {formatTime(lapTime)}</div>
       } else {

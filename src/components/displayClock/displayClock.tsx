@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function DisplayClock() {
+export const DisplayClock: React.FC = () => {
     return (
       <div>
         CLOCK TO BE DISPLAYED HERE

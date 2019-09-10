@@ -1,7 +1,8 @@
 import React, {useCallback} from 'react'
 import './buttons.css'
+import {lapTimes} from '../../App'
 
-export function InputButtons({isRunning, setIsRunning, laps, setLaps, time, setTime, setLapsDiff, lapsDiff, setLapTime}) {
+export const InputButtons: React.FC<{isRunning: boolean, setIsRunning: (boolean: boolean) => void, laps: number[], setLaps: (array: number[]) => void, time: number, setTime: (number: number) => void, setLapsDiff: (lapTimes:{}) => void, lapsDiff: lapTimes, setLapTime: (number: number) => void}> = ({isRunning, setIsRunning, laps, setLaps, time, setTime, setLapsDiff, lapsDiff, setLapTime}) => {
 
   const toggleIsRunning = useCallback(() => {
     !isRunning ? setIsRunning(true) : setIsRunning(false)

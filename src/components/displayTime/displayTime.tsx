@@ -1,7 +1,7 @@
 import React, {useEffect, useCallback} from 'react'
 import './time.css'
 
-export function DisplayTime({time, setTime, isRunning, formatTime, setLapTime}) {
+export const DisplayTime: React.FC<{time: number, setTime: (number: (number: number) => number) => void, isRunning: boolean, formatTime: (number: number) => string, setLapTime: (number: (number: number) => number) => void}> = ({time, setTime, isRunning, formatTime, setLapTime}) => {
 
   const tick = useCallback(() => {
     setTime(time => time + 1)

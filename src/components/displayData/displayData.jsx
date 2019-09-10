@@ -4,12 +4,12 @@ import './data.css'
 export function DisplayData({lapsDiff, formatTime, lapTime}) {
 
     const minMaxHighlight = useCallback((value) => {
-      const min = Math.min.apply(Math, lapsDiff.map(lap => lap[1]))
-      const max = Math.max.apply(Math, lapsDiff.map(lap => lap[1]))
+      const min = Math.min.apply(Math, Object.values(lapsDiff))
+      const max = Math.max.apply(Math, Object.values(lapsDiff))
 
-        if(value === min && lapsDiff.length > 1) {
+        if(value === min && Object.values(lapsDiff).length > 1) {
           return 'green'
-        } else if (value === max && lapsDiff.length > 1) {
+        } else if (value === max && Object.values(lapsDiff).length > 1) {
           return 'red'
         } else {
           return 'white'
@@ -19,16 +19,16 @@ export function DisplayData({lapsDiff, formatTime, lapTime}) {
 
     const topRow = useCallback(() => {
   
-      if(lapsDiff.length === 0) {
+      if(Object.values(lapsDiff).length === 0) {
         return <div className='topRow'>Lap 1 {formatTime(lapTime)}</div>
       } else {
-        return <div className='topRow'>Lap {lapsDiff.length + 1} {formatTime(lapTime)}</div>
+        return <div className='topRow'>Lap {Object.values(lapsDiff).length + 1} {formatTime(lapTime)}</div>
       }
     }, [lapsDiff, formatTime, lapTime])
 
     return (
       <div className='lapsContainer'>
-        {lapsDiff.map(([key, lap]) => {
+        {Object.entries(lapsDiff).map(([key, lap]) => {
           return <div className={minMaxHighlight(lap)} key={key}>Lap {key} {formatTime(lap)}</div>
         })}
         {topRow()}

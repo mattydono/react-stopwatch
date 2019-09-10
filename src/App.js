@@ -6,7 +6,7 @@ function App() {
 
   const [time, setTime] = useState(0)
   const [laps, setLaps] = useState([])
-  const [lapsDiff, setLapsDiff] = useState([])
+  const [lapsDiff, setLapsDiff] = useState({})
   const [isRunning, setIsRunning] = useState(false)  
   const [display, setDisplay] = useState(0)
   const [lapTime, setLapTime] = useState(0)

@@ -10,13 +10,13 @@ export function InputButtons({isRunning, setIsRunning, laps, setLaps, time, setT
   const toggleLapReset = useCallback(() => {
     if(isRunning) {
       setLaps([...laps, time])
-      setLapsDiff([...lapsDiff, [laps.length + 1, laps.length < 1 ?  time : time - laps[laps.length - 1]]])
+      setLapsDiff({...lapsDiff, [laps.length + 1]: laps.length < 1 ?  time : time - laps[laps.length - 1]})
       setLapTime(0)
     } else {
       setIsRunning(false)
       setTime(0)
       setLaps([])
-      setLapsDiff([])
+      setLapsDiff({})
       setLapTime(0)
     }
   }, [time, laps, setTime, setLaps, isRunning, setIsRunning, lapsDiff, setLapsDiff, setLapTime])
